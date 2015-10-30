@@ -6,6 +6,10 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
     
+    <name>folder-classloader-factory</name>
+    <description>A classloader factory that load jars from a specified folder.</description>
+    <url>https://github.com/le-yams/folder-classloader-factory</url>
+    
     <licenses>
         <license>
             <name>MIT License</name>
@@ -113,4 +117,11 @@
             </build>
         </profile>
     </profiles>
+    
+    <developers>
+        <developer>
+            <id>le-yams</id>
+            <name>Yann D'Isanto</name>
+        </developer>
+    </developers>
 </project>
