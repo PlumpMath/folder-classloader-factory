@@ -72,6 +72,10 @@ public final class FolderClassLoaderFactory implements Supplier<Optional<ClassLo
     }
 
     public ClassLoader createClassLoader() throws IOException {
+        return createClassLoader(Thread.currentThread().getContextClassLoader());
+    }
+    
+    public ClassLoader createClassLoader(ClassLoader parent) throws IOException {
         Path zippedJarsTempFolder = createZippedJarsTempFolder();
         try (DirectoryStream<Path> directory = Files.newDirectoryStream(folder)) {
             URL[] urls = StreamSupport.stream(directory.spliterator(), false)
@@ -80,7 +84,7 @@ public final class FolderClassLoaderFactory implements Supplier<Optional<ClassLo
                     .map(Path::toUri)
                     .map(this::quietUriToUrl)
                     .toArray(URL[]::new);
-            return new URLClassLoader(urls, Thread.currentThread().getContextClassLoader());
+            return new URLClassLoader(urls, parent);
         }
     }
 
